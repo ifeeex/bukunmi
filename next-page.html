@@ -5,31 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Valentine</title>
     <style>
+      /* General Styles */
       body {
         font-family: Arial, sans-serif;
         background-color: #ffe6e6;
-        text-align: center;
         color: #800000;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
       }
+
       .container {
-        width: 50%;
-        margin: auto;
+        width: 90%;
+        max-width: 1200px;
         background: white;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(216, 57, 57, 0.1);
+        text-align: center;
       }
-      video {
-        width: 40%;
-        border-radius: 10px;
-        margin: 10px 0;
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #ff4d4d;
       }
-      a {
-        display: block;
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
         margin-top: 20px;
+      }
+
+      video {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      video:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      .music-player {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .music-player button {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .music-player button:hover {
+        background-color: #e60000;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 10px 20px;
+        background-color: #ff4d4d;
+        color: white;
         text-decoration: none;
-        color: #800000;
-        font-weight: bold;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+      }
+
+      a:hover {
+        background-color: #e60000;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .video-grid {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        .video-grid {
+          grid-template-columns: 1fr;
+        }
+
+        a {
+          font-size: 0.9rem;
+          padding: 8px 16px;
+        }
       }
     </style>
   </head>
@@ -37,31 +123,70 @@
     <div class="container">
       <h1>My Gorgeous Nurse</h1>
 
-      <video controls>
-        <source src="kunm vid 1.mp4" type="video/mp4" />
-      </video>
+      <!-- Music Player -->
+      <div class="music-player">
+        <audio id="valentine-music" src="better.mp3"></audio>
+        <button onclick="playMusic()">Play</button>
+        <button onclick="pauseMusic()">Pause</button>
+      </div>
 
-      <video controls>
-        <source src="kunm vid 3.mp4" type="video/mp4" />
-      </video>
+      <!-- Video Grid -->
+      <div class="video-grid">
+        <video controls>
+          <source src="kunm vid 1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-      <video controls>
-        <source src="kunm vid 2.mp4" type="video/mp4" />
-      </video>
+        <video controls>
+          <source src="kunm vid 3.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-      <video controls>
-        <source src="kunm vid 5.mp4" type="video/mp4" />
-      </video>
+        <video controls>
+          <source src="kunm vid 2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-      <video controls>
-        <source src="kunm vid 4.mp4" type="video/mp4" />
-      </video>
+        <video controls>
+          <source src="kunm vid 5.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-      <video controls>
-        <source src="kunm vid 6.mp4" type="video/mp4" />
-      </video>
+        <video controls>
+          <source src="kunm vid 4.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <video controls>
+          <source src="kunm vid 6.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
       <a href="index.html">Back to Home</a>
     </div>
+
+    <script>
+      // JavaScript for Music Player
+      const audio = document.getElementById("valentine-music");
+
+      // Start music immediately when the page loads
+      window.addEventListener("load", () => {
+        audio.currentTime = 7; // Start from 7 seconds
+        audio.play().catch((error) => {
+          console.log(
+            "Autoplay was blocked by the browser. Please interact with the page to play music."
+          );
+        });
+      });
+
+      function playMusic() {
+        audio.play();
+      }
+
+      function pauseMusic() {
+        audio.pause();
+      }
+    </script>
   </body>
 </html>
